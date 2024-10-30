@@ -12,10 +12,10 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Ball physics setup
+// Ball physics setup with continuous bounce
 const balls = [];
 const gravity = 0.2;
-const friction = 0.99; // Friction to slow down after bounce
+const colorChangeSpeed = 0.01; // Speed of color transition
 
 for (let i = 0; i < 10; i++) {
     balls.push({
@@ -24,93 +24,34 @@ for (let i = 0; i < 10; i++) {
         radius: 15 + Math.random() * 20,
         colorHue: Math.random() * 360,
         dx: Math.random() * 2 - 1,
-        dy: Math.random() * 2 - 1,
-        isDragging: false,
-        offsetX: 0,
-        offsetY: 0
+        dy: Math.random() * 2 - 1
     });
 }
-
-// Track mouse position and state
-let mouse = { x: 0, y: 0, isDown: false, ballIndex: -1 };
-
-// Update mouse coordinates
-canvas.addEventListener("mousemove", (event) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = event.clientX - rect.left;
-    mouse.y = event.clientY - rect.top;
-});
-
-// Handle mouse down event for dragging balls
-canvas.addEventListener("mousedown", (event) => {
-    mouse.isDown = true;
-    balls.forEach((ball, index) => {
-        const dist = Math.hypot(ball.x - mouse.x, ball.y - mouse.y);
-        if (dist <= ball.radius) {
-            ball.isDragging = true;
-            mouse.ballIndex = index;
-            ball.offsetX = ball.x - mouse.x;
-            ball.offsetY = ball.y - mouse.y;
-        }
-    });
-});
-
-// Handle mouse up event for releasing balls
-canvas.addEventListener("mouseup", () => {
-    mouse.isDown = false;
-    if (mouse.ballIndex !== -1) {
-        const ball = balls[mouse.ballIndex];
-        ball.isDragging = false;
-        // Calculate velocity based on drag speed
-        ball.dx = (mouse.x - ball.x) * 0.1;
-        ball.dy = (mouse.y - ball.y) * 0.1;
-    }
-    mouse.ballIndex = -1;
-});
 
 function animateBalls() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     balls.forEach(ball => {
-        // Draw ball
+        // Gradual color transition
+        ball.colorHue = (ball.colorHue + colorChangeSpeed) % 360;
         const color = `hsl(${ball.colorHue}, 100%, 50%)`;
+
+        // Draw ball
         ctx.beginPath();
         ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
         ctx.fillStyle = color;
         ctx.fill();
         ctx.closePath();
 
-        // Check if the ball is being dragged
-        if (ball.isDragging && mouse.isDown) {
-            ball.x = mouse.x + ball.offsetX;
-            ball.y = mouse.y + ball.offsetY;
-        } else {
-            // Apply gravity
-            ball.dy += gravity;
-
-            // Bounce off edges with friction
-            if (ball.y + ball.radius > canvas.height) {
-                ball.y = canvas.height - ball.radius;
-                ball.dy = -ball.dy * friction;
-            } else if (ball.y - ball.radius < 0) {
-                ball.y = ball.radius;
-                ball.dy = -ball.dy * friction;
-            }
-            if (ball.x + ball.radius > canvas.width) {
-                ball.x = canvas.width - ball.radius;
-                ball.dx = -ball.dx * friction;
-            } else if (ball.x - ball.radius < 0) {
-                ball.x = ball.radius;
-                ball.dx = -ball.dx * friction;
-            }
-
-            // Update position with velocity
-            ball.x += ball.dx;
-            ball.y += ball.dy;
-
-            // Apply friction to slow down gradually
-            ball.dx *= friction;
-            ball.dy *= friction;
+        // Continuous bounce without friction
+        if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+            ball.dy = -ball.dy;
         }
+        if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+            ball.dx = -ball.dx;
+        }
+
+        ball.x += ball.dx;
+        ball.y += ball.dy;
     });
     requestAnimationFrame(animateBalls);
 }
