@@ -13,10 +13,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Align items to the top */
-            height: auto; /* Allow body height to adjust */
+            justify-content: center;
+            height: 100vh; /* Full height */
             margin: 0;
-            padding: 20px; /* Add padding for spacing */
             overflow: hidden; /* Prevent extra scrolling */
         }
 
@@ -24,7 +23,6 @@
             font-size: 2.5em;
             color: #ff9900; /* Orange accent */
             margin: 20px 0;
-            text-align: center; /* Center the title */
         }
 
         #projects-container {
@@ -34,7 +32,7 @@
             max-width: 900px;
             padding: 20px;
             overflow: auto; /* Allow scrolling within the project container if needed */
-            height: auto; /* Adjust height for container */
+            height: 100%; /* Full height for container */
         }
 
         .project-card {
@@ -72,7 +70,7 @@
         @media (max-width: 600px) {
             body {
                 flex-direction: column; /* Stack vertically */
-                padding: 20px; /* Add padding for mobile */
+                height: auto; /* Height auto for mobile */
             }
 
             #projects-container {
