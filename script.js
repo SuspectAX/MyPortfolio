@@ -1,4 +1,4 @@
-// Ball settings for bouncing effect
+// Canvas setup for bouncing balls
 const canvas = document.createElement("canvas");
 canvas.id = "backgroundCanvas";
 document.body.appendChild(canvas);
@@ -12,7 +12,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Ball physics
+// Ball physics setup
 const balls = [];
 const gravity = 0.2;
 const friction = 0.98;
