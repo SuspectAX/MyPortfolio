@@ -13,8 +13,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Align items to the top */
-            height: auto; /* Allow body height to adjust */
+            justify-content: center; /* Center content vertically */
+            height: 100vh; /* Full viewport height */
             margin: 0;
             padding: 20px; /* Add padding for spacing */
             overflow: hidden; /* Prevent extra scrolling */
@@ -37,6 +37,7 @@
             overflow: auto; /* Allow scrolling within the project container if needed */
             height: auto; /* Adjust height for container */
             margin-bottom: 20px; /* Add bottom margin for space */
+            flex-grow: 1; /* Allow the container to grow and take available space */
         }
 
         .project-card {
@@ -75,6 +76,7 @@
             body {
                 flex-direction: column; /* Stack vertically */
                 padding: 20px; /* Add padding for mobile */
+                height: auto; /* Allow height to adjust for mobile */
             }
 
             #projects-container {
@@ -83,6 +85,8 @@
                 align-items: center; /* Center items */
                 height: auto; /* Adjust height */
                 padding: 10px; /* Reduce padding for mobile */
+                margin-bottom: 20px; /* Space for bottom */
+                overflow-y: auto; /* Allow vertical scrolling if necessary */
             }
         }
 
@@ -104,11 +108,6 @@
 <body>
     <h1>Arch Jade Bonich's Portfolio</h1>
     <div id="projects-container"></div>
-
-    <!-- Link to JavaScript file -->
-    <script src="script.js" defer></script>
-</body>
-</html>
 
     <!-- Link to JavaScript file -->
     <script src="script.js" defer></script>
