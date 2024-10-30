@@ -62,16 +62,34 @@
             height: 100%;
             z-index: -1;
         }
+
+        /* Mobile styling: make project cards stack vertically */
+        @media (max-width: 600px) {
+            #projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>Arch Jade Bonich's Portfolio</h1>
-    <div id="projects-container"></div>
-
-    <!-- Link to JavaScript file -->
-    <script src="script.js" defer></script>
-</body>
-</html>
+    <div id="projects-container">
+        <div class="project-card">
+            <h2>QR Code Keychain</h2>
+            <p>Personalized keychain with QR code leading to a photo gallery.</p>
+            <a href="#" class="project-link">View Project</a>
+        </div>
+        <div class="project-card">
+            <h2>Interactive Questions</h2>
+            <p>Playful questionnaire with a surprise for your loved one!</p>
+            <a href="#" class="project-link">View Project</a>
+        </div>
+        <div class="project-card">
+            <h2>QR Code Video</h2>
+            <p>Personalized keychain with QR code leading to a video saved online.</p>
+            <a href="#" class="project-link">View Project</a>
+        </div>
+    </div>
 
     <!-- Link to JavaScript file -->
     <script src="script.js" defer></script>
