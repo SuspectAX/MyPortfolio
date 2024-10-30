@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arch Jade Bonich | Portfolio</title>
+    <title>Arch Jade Bonich - Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header with Contact Information -->
-    <header>
-        <h1>Arch Jade Bonich</h1>
-        <p>Phone: <a href="tel:09078767678">0907 876 7678</a> | Email: <a href="mailto:archjade.bonich@hercorcollege.edu.ph">archjade.bonich@hercorcollege.edu.ph</a></p>
-    </header>
+    <canvas id="backgroundCanvas"></canvas> <!-- Canvas for bouncing balls -->
 
-    <!-- Portfolio Projects Section -->
-    <section class="projects">
-        <div class="project-card">
-            <h2>QR Code Keychain</h2>
-            <p>Personalized keychain with a QR code leading to a photo gallery.</p>
-            <a href="https://suspectax.github.io/qtgalleryyy/" target="_blank" class="project-link">View Project</a>
-        </div>
+    <div class="container">
+        <header>
+            <h1>Arch Jade Bonich</h1>
+            <p>Contact: <a href="tel:+639078767678">0907 876 7678</a> | <a href="mailto:archjade.bonich@hercorcollege.edu.ph">archjade.bonich@hercorcollege.edu.ph</a></p>
+            <p>Welcome to my personal portfolio! Explore my projects below.</p>
+        </header>
+        
+        <section class="projects">
+            <div class="project-card">
+                <h2>QR Code Keychain</h2>
+                <p>Personalized keychain with QR code leading to a photo gallery.</p>
+                <a href="https://suspectax.github.io/qtgalleryyy/" target="_blank" class="project-link">View Project</a>
+            </div>
 
-        <div class="project-card">
-            <h2>Interactive Questions</h2>
-            <p>A playful, interactive questionnaire with a special twist!</p>
-            <a href="https://suspectax.github.io/Doyouloveme/" target="_blank" class="project-link">View Project</a>
-        </div>
-    </section>
+            <div class="project-card">
+                <h2>Interactive Questions</h2>
+                <p>Playful questionnaire with a surprise for your loved one!</p>
+                <a href="https://suspectax.github.io/Doyouloveme/" target="_blank" class="project-link">View Project</a>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script> <!-- JavaScript file for physics balls -->
 </body>
 </html>
