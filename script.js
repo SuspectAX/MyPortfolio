@@ -2,7 +2,7 @@
 const canvas = document.createElement("canvas");
 canvas.id = "backgroundCanvas";
 document.body.appendChild(canvas);
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -12,17 +12,20 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Ball physics setup with continuous bounce
+// Ball physics setup with continuous bounce and pastel colors
 const balls = [];
 const gravity = 0.2;
-const colorChangeSpeed = 0.01; // Speed of color transition
+const colorChangeSpeed = 0.02; // Speed of color transition
+
+// Define a range of hues for nude colors
+const nudeHues = [0, 20, 40, 60, 180, 220, 300]; // Soft reds, yellows, browns, turquoise, etc.
 
 for (let i = 0; i < 10; i++) {
     balls.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         radius: 15 + Math.random() * 20,
-        colorHue: Math.random() * 360,
+        colorHue: nudeHues[Math.floor(Math.random() * nudeHues.length)], // Pick a random nude hue
         dx: Math.random() * 2 - 1,
         dy: Math.random() * 2 - 1
     });
@@ -31,9 +34,9 @@ for (let i = 0; i < 10; i++) {
 function animateBalls() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     balls.forEach(ball => {
-        // Gradual color transition
+        // Gradual color transition within pastel hues
         ball.colorHue = (ball.colorHue + colorChangeSpeed) % 360;
-        const color = `hsl(${ball.colorHue}, 100%, 50%)`;
+        const color = `hsl(${ball.colorHue}, 40%, 70%)`; // Use soft pastel saturation and lightness
 
         // Draw ball
         ctx.beginPath();
@@ -57,35 +60,3 @@ function animateBalls() {
 }
 
 animateBalls();
-
-// Portfolio projects data
-const projects = [
-    { name: "QR Code Keychain", description: "Personalized keychain with QR code leading to a photo gallery.", link: "https://suspectax.github.io/qtgalleryyy/" },
-    { name: "Interactive Questions", description: "Playful questionnaire with a surprise for your loved one!", link: "https://suspectax.github.io/Doyouloveme/" },
-    { name: "QR code video", description: "Personalized keychain with QR code leading to a video saved online.", link: "https://suspectax.github.io/qtvidgallery/" }
-];
-
-// Populate projects dynamically
-const projectsContainer = document.getElementById('projects-container');
-
-projects.forEach(project => {
-    const projectCard = document.createElement('div');
-    projectCard.classList.add('project-card');
-
-    const projectTitle = document.createElement('h2');
-    projectTitle.textContent = project.name;
-
-    const projectDescription = document.createElement('p');
-    projectDescription.textContent = project.description;
-
-    const projectLink = document.createElement('a');
-    projectLink.href = project.link;
-    projectLink.target = "_blank";
-    projectLink.textContent = "View Project";
-    projectLink.classList.add('project-link');
-
-    projectCard.appendChild(projectTitle);
-    projectCard.appendChild(projectDescription);
-    projectCard.appendChild(projectLink);
-    projectsContainer.appendChild(projectCard);
-});
