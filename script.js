@@ -1,5 +1,4 @@
 // JavaScript for bouncing balls with physics
-
 const canvas = document.getElementById('backgroundCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -56,3 +55,35 @@ function animate() {
 }
 
 animate();
+
+// Project list with names and URLs
+const projects = [
+    { name: "QR Code Keychain", description: "Personalized keychain with QR code leading to a photo gallery.", link: "https://suspectax.github.io/qtgalleryyy/" },
+    { name: "Interactive Questions", description: "Playful questionnaire with a surprise for your loved one!", link: "https://suspectax.github.io/Doyouloveme/" }
+];
+
+// Dynamically load projects
+const projectsContainer = document.getElementById('projects-container');
+
+projects.forEach(project => {
+    const projectCard = document.createElement('div');
+    projectCard.classList.add('project-card');
+
+    const projectTitle = document.createElement('h2');
+    projectTitle.textContent = project.name;
+
+    const projectDescription = document.createElement('p');
+    projectDescription.textContent = project.description;
+
+    const projectLink = document.createElement('a');
+    projectLink.href = project.link;
+    projectLink.target = "_blank";
+    projectLink.textContent = "View Project";
+    projectLink.classList.add('project-link');
+
+    projectCard.appendChild(projectTitle);
+    projectCard.appendChild(projectDescription);
+    projectCard.appendChild(projectLink);
+
+    projectsContainer.appendChild(projectCard);
+});
