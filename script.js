@@ -1,17 +1,22 @@
-// JavaScript for bouncing balls with physics
-const canvas = document.getElementById('backgroundCanvas');
+// Ball settings for bouncing effect
+const canvas = document.createElement("canvas");
+canvas.id = "backgroundCanvas";
+document.body.appendChild(canvas);
 const ctx = canvas.getContext('2d');
 
-// Resize canvas to fit screen
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
 
-// Ball settings
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+// Ball physics
 const balls = [];
 const gravity = 0.2;
 const friction = 0.98;
 
-// Create balls with random properties
 for (let i = 0; i < 10; i++) {
     balls.push({
         x: Math.random() * canvas.width,
@@ -23,19 +28,15 @@ for (let i = 0; i < 10; i++) {
     });
 }
 
-// Draw and animate balls
-function animate() {
+function animateBalls() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     balls.forEach(ball => {
-        // Draw ball
         ctx.beginPath();
         ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
         ctx.fillStyle = ball.color;
         ctx.fill();
         ctx.closePath();
 
-        // Apply gravity and friction
         if (ball.y + ball.radius + ball.dy > canvas.height) {
             ball.dy = -ball.dy * friction;
         } else {
@@ -46,25 +47,22 @@ function animate() {
             ball.dx = -ball.dx * friction;
         }
 
-        // Update ball position
         ball.x += ball.dx;
         ball.y += ball.dy;
     });
-
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animateBalls);
 }
 
-animate();
+animateBalls();
 
-// Project list with names and URLs
+// Portfolio projects data
 const projects = [
     { name: "QR Code Keychain", description: "Personalized keychain with QR code leading to a photo gallery.", link: "https://suspectax.github.io/qtgalleryyy/" },
     { name: "Interactive Questions", description: "Playful questionnaire with a surprise for your loved one!", link: "https://suspectax.github.io/Doyouloveme/" },
     { name: "QR code video", description: "Personalized keychain with QR code leading to a video saved online.", link: "https://suspectax.github.io/qtvidgallery/" }
-
 ];
 
-// Dynamically load projects
+// Populate projects dynamically
 const projectsContainer = document.getElementById('projects-container');
 
 projects.forEach(project => {
@@ -86,6 +84,5 @@ projects.forEach(project => {
     projectCard.appendChild(projectTitle);
     projectCard.appendChild(projectDescription);
     projectCard.appendChild(projectLink);
-
     projectsContainer.appendChild(projectCard);
 });
