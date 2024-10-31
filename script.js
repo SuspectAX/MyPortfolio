@@ -17,7 +17,7 @@ const balls = [];
 const gravity = 0.2;
 const colorChangeSpeed = 0.01; // Speed of color transition
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 20; i++) {
     balls.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
