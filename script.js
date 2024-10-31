@@ -21,7 +21,7 @@ for (let i = 0; i < 10; i++) {
     balls.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: 15 + Math.random() * 20,
+        radius: 15 + Math.random() * 30,
         colorHue: Math.random() * 360,
         dx: Math.random() * 2 - 1,
         dy: Math.random() * 2 - 1
